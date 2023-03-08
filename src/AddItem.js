@@ -18,6 +18,7 @@ const AddItem = ({length, addItem, itemChange }) => {
         aria-label='Add Item'
         // onClick = {addItem}
       ><FaPlus /></button>
+      {/* <input type="reset" value="Reset Form"/> */}
     </form>
   )
 };

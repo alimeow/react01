@@ -47,8 +47,7 @@ function App() {
     const checked = false;
     const newItem = {id, checked, item}
     setValue(newItem)
-    console.log(newItem)
-    // e.preventDefault();
+    // console.log(newItem)
   }
 
   const addItem = (e) => {
@@ -56,9 +55,12 @@ function App() {
     e.preventDefault();
     //if use line below app will crash and trigger 'Uncaught TypeError: items.map is not a function' at ItemList.js ***
     // setItems(items.push(newItem))
-    items.push(newItem)
-    console.log(items)
-    setItems(items)
+    if (Object.keys(newItem).length !== 0) {
+      items.push(newItem)
+      // console.log(items)
+      // setItems(items)
+      setValue({})
+    }
   }
 
   return (
