@@ -7,6 +7,7 @@ import Footer from './Footer';
 import { useState } from 'react';
 
 function App() {
+  const [newItem, setValue] = useState({});
 
   const[items, setItems] = useState([
     {
@@ -40,10 +41,30 @@ function App() {
     localStorage.setItem('shoppingList', JSON.stringify(newItems))
   }
 
+  const itemChange = (e) => {
+    const item = e.target.value;
+    const id = items.length + 1;
+    const checked = false;
+    const newItem = {id, checked, item}
+    setValue(newItem)
+    console.log(newItem)
+    // e.preventDefault();
+  }
+
+  const addItem = (e) => {
+    //add the item:
+    e.preventDefault();
+    //if use line below app will crash and trigger 'Uncaught TypeError: items.map is not a function' at ItemList.js ***
+    // setItems(items.push(newItem))
+    items.push(newItem)
+    console.log(items)
+    setItems(items)
+  }
+
   return (
     <div className="App">
       <Header title="Grocery List" />
-      <AddItem />
+      <AddItem addItem={addItem} itemChange={itemChange} />
       <Content
       items={items}
       toggleCheck={toggleCheck}
